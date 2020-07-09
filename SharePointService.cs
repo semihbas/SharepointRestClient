@@ -1,6 +1,3 @@
-using ClientReporting.Function.ReportProcessor.Configuration;
-using ClientReporting.Function.ReportProcessor.Models;
-using ClientReporting.Function.ReportProcessor.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using RestSharp;
