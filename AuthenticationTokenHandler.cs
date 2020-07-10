@@ -29,5 +29,23 @@ namespace Services
 
             return token;
         }
+        
+         public static string GetAccessToken(string azureAdInstance, string tenantId, string clientId, string clientSecret, string userId, string password, string resourceIdToConsume)
+        {           
+            var restClient = new RestClient("" + azureAdInstance + "/" + tenantId + "/oauth2/v2.0/token");
+            var request = new RestRequest();
+            request.AddParameter("client_id", clientId);
+            request.AddParameter("grant_type", "password");
+            request.AddParameter("scope", resourceIdToConsume + ".default");
+            request.AddParameter("client_secret", clientSecret);
+            request.AddParameter("username", userId);
+            request.AddParameter("password", password);
+
+            var response = restClient.Execute(request, Method.POST);
+            var json = JObject.Parse(response.Content);
+            var token = Convert.ToString(json["access_token"]);
+            return token;
+        }
+
     }
 }
